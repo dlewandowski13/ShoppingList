@@ -111,6 +111,7 @@ class DatabaseHandler(context: Context) :
         cv.put(KEY_NAME, item.name)
         cv.put(KEY_AMOUNT, item.amount)
         cv.put(KEY_PRICE, item.price)
+        cv.put(KEY_BOUGTH, item.bougth)
 
 //aktualizacja rekordu w db
         val success = db.update(TABLE_SHOPPING_LIST, cv, KEY_ID + "=" + item.id, null)

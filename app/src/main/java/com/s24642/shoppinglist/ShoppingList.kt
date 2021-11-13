@@ -5,6 +5,7 @@ import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_shopping_list.*
@@ -80,15 +81,15 @@ class ShoppingList : AppCompatActivity() {
     }
 
 //okienko do aktualizacji danych
-    fun updateRecordDialog(ShpngListModelClass: ShpngListModelClass) {
+    fun updateRecordDialog(shpngListModelClass: ShpngListModelClass) {
         val updateDialog = Dialog(this, R.style.Theme_Dialog)
         updateDialog.setCancelable(false)
 //ustawienie widoku na dialog_update
         updateDialog.setContentView(R.layout.dialog_update)
 
-        updateDialog.etUpdateName.setText(ShpngListModelClass.name)
-        updateDialog.etUpdateAmount.setText(ShpngListModelClass.amount)
-        updateDialog.etUpdatePrice.setText(ShpngListModelClass.price)
+        updateDialog.etUpdateName.setText(shpngListModelClass.name)
+        updateDialog.etUpdateAmount.setText(shpngListModelClass.amount)
+        updateDialog.etUpdatePrice.setText(shpngListModelClass.price)
 
         updateDialog.tvUpdate.setOnClickListener(View.OnClickListener {
 
@@ -96,11 +97,11 @@ class ShoppingList : AppCompatActivity() {
             val amount = updateDialog.etUpdateAmount.text.toString()
             val price = updateDialog.etUpdatePrice.text.toString()
 
-            val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+            val databaseHandler = DatabaseHandler(this)
 
             if (!name.isEmpty() && !amount.isEmpty() && !price.isEmpty()) {
                 val status =
-                    databaseHandler.updateItem(ShpngListModelClass(ShpngListModelClass.id, name, amount, price, 0))
+                    databaseHandler.updateItem(ShpngListModelClass(shpngListModelClass.id, name, amount, price, 0))
                 if (status > -1) {
                     Toast.makeText(applicationContext, "Pozycja zaktualizowana", Toast.LENGTH_LONG).show()
 
@@ -161,4 +162,23 @@ class ShoppingList : AppCompatActivity() {
         alertDialog.setCancelable(false)
         alertDialog.show()
     }
-}
+//TODO updateBougth do dokończenia
+    fun updateBougth(bougth: Int, shpngListModelClass: ShpngListModelClass)  {
+
+        val databaseHandler = DatabaseHandler(this)
+
+        val status = databaseHandler.updateItem(ShpngListModelClass(
+            shpngListModelClass.id, shpngListModelClass.name, shpngListModelClass.amount, shpngListModelClass.price, bougth))
+            if (status > -1) {
+                if(bougth == 1) {
+                    Toast.makeText(applicationContext,"Kupiłeś ${shpngListModelClass.name}",Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(applicationContext,"Nie kupiłeś ${shpngListModelClass.name}",Toast.LENGTH_LONG).show()
+                }
+
+                setupListofDataIntoRecyclerView()
+            }
+        }
+
+
+    }
