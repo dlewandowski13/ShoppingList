@@ -36,11 +36,11 @@ class ItemAdapter(val context: Context, val items: ArrayList<ShpngListModelClass
             holder.llMain.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
-                    R.color.colorLightGray
+                    R.color.gray
                 )
             )
         } else {
-            holder.llMain.setBackgroundColor(ContextCompat.getColor(context, R.color.colorWhite))
+            holder.llMain.setBackgroundColor(ContextCompat.getColor(context, R.color.gray2))
         }
 
 //obsługa przycisku do aktualizacji rekordu

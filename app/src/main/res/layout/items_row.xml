@@ -6,56 +6,41 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:weightSum="6">
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         tools:text="Name" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text=";" />
-
-    <TextView
         android:id="@+id/tvAmount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        tools:text="Email" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text=";" />
+        tools:text="Ilość" />
 
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        tools:text="Email" />
+        tools:text="Cena" />
 
     <ImageView
         android:id="@+id/ivEdit"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_weight="0.5"
         android:contentDescription="image"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:scaleType="center"
@@ -65,6 +50,7 @@
         android:id="@+id/ivDelete"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_weight="0.5"
         android:contentDescription="image"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:scaleType="center"
