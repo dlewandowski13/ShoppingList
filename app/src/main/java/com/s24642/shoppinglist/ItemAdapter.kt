@@ -21,13 +21,14 @@ class ItemAdapter(val context: Context, val items: ArrayList<ShpngListModelClass
         )
     }
 
+//przypisanie każdego elementu z ArrayList do widoku
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val item = items[position]
 
         holder.tvName.text = item.name
-        holder.tvAmount.text = item.amount.toString()
-        holder.tvPrice.text = item.price.toString()
+        holder.tvAmount.text = item.amount
+        holder.tvPrice.text = item.price
 
 // Updating the background color according to the odd/even positions in list.
         //TODO: Zdecydować co z kolorami
@@ -42,13 +43,18 @@ class ItemAdapter(val context: Context, val items: ArrayList<ShpngListModelClass
             holder.llMain.setBackgroundColor(ContextCompat.getColor(context, R.color.colorWhite))
         }
 
-//TODO:do zrobienia setOnClickListener na ivEdit
+//obsługa przycisku do aktualizacji rekordu
+        holder.ivEdit.setOnClickListener { view ->
+            if (context is ShoppingList) {
+                context.updateRecordDialog(item)
+            }
+        }
 
-//        holder.ivEdit.setOnClickListener { view ->
-//            if (context is ShoppingList) {
-//                context.updateRecordDialog(item)
-//            }
-//        }
+        holder.ivDelete.setOnClickListener { view ->
+            if (context is ShoppingList) {
+                context.deleteRecordAlertDialog(item)
+            }
+        }
 
     }
 
@@ -60,7 +66,7 @@ class ItemAdapter(val context: Context, val items: ArrayList<ShpngListModelClass
 
 //lista elementów RecyclerView
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Holds the TextView that will add each item to
+
         val llMain = view.llMain
         val tvName = view.tvName
         val tvAmount = view.tvAmount

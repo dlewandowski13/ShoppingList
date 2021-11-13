@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
             android:hint="Nazwa produktu"
+            android:textColorHint="@color/light_grey"
             android:textColor="@color/white"/>
     </LinearLayout>
 
@@ -40,8 +41,9 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.25"
             android:text="Ilość"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -52,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
             android:hint="Ilość"
+            android:textColorHint="@color/light_grey"
             android:inputType="numberDecimal"
             android:textColor="@color/white" />
     </LinearLayout>
@@ -75,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
             android:hint="Cena"
+            android:textColorHint="@color/light_grey"
             android:inputType="numberDecimal"
             android:textColor="@color/white"/>
     </LinearLayout>
@@ -83,7 +87,9 @@
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dodaj produkt" />
+        android:background="@color/design_default_color_primary"
+        android:text="Dodaj produkt"
+        android:textColor="@color/white"/>
 
 
     <LinearLayout
@@ -99,10 +105,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="All the inserted records."
+            android:text="Twoja lista zakupów"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -117,7 +124,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="No records available!!!"
+        android:text="Brak produktów na liście"
+        android:textColor="@color/light_grey"
         android:textSize="18sp"
         android:visibility="gone"
         tools:visibility="visible" />
