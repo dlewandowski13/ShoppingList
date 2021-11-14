@@ -2,21 +2,28 @@ package com.s24642.shoppinglist
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_shopping_list.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.dialog_update.*
 
 class ShoppingList : AppCompatActivity() {
+
+    private lateinit var mSharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_list)
         setSupportActionBar(toolbar)
+        mSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE)
+        initializeSettings(mSharedPreferences)
 
         btnAdd.setOnClickListener { view ->
             addItem()
@@ -162,7 +169,7 @@ class ShoppingList : AppCompatActivity() {
         alertDialog.setCancelable(false)
         alertDialog.show()
     }
-//TODO updateBougth do dokończenia
+
     fun updateBougth(bougth: Int, shpngListModelClass: ShpngListModelClass)  {
 
         val databaseHandler = DatabaseHandler(this)
@@ -179,6 +186,19 @@ class ShoppingList : AppCompatActivity() {
                 setupListofDataIntoRecyclerView()
             }
         }
+    fun initializeSettings(mSharedPreferences: SharedPreferences){
+//
+        val ShoppingListBackground = mSharedPreferences.getString(Constants.PREFERENCE_BACKGROUND,"dark")
 
+//Ustawienie wartości każdego tła
+        when(ShoppingListBackground){
+            "dark" -> llShoppingList.setBackgroundResource(R.drawable.background_img)
+            "gradient" -> llShoppingList.setBackgroundResource(R.drawable.background_gradient)
+            "blue" -> llShoppingList.setBackgroundResource(R.drawable.background_blue)
+            else -> llShoppingList.setBackgroundResource(R.drawable.background_img)
+        }
 
     }
+
+}
+
