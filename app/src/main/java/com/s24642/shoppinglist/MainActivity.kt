@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                 spEditor.putString(Constants.PREFERENCE_SL_NAME, listName)
 
                 Toast.makeText(applicationContext, "Dane zapisane", Toast.LENGTH_LONG).show()
+
                 spEditor.apply()
                 initializeSettings(mSharedPreferences)
 
