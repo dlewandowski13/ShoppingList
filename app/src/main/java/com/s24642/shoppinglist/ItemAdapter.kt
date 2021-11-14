@@ -31,11 +31,7 @@ class ItemAdapter(val context: Context, val items: ArrayList<ShpngListModelClass
     holder.tvName.text = item.name
     holder.tvAmount.text = item.amount
     holder.tvPrice.text = item.price
-    if (item.bougth == 1) {
-        holder.cbBougth.isChecked = true
-    } else {
-        holder.cbBougth.isChecked = false
-    }
+    holder.cbBougth.isChecked = item.bougth == 1
 
 
 //co drugi wiersz jest inaczej pokolorowany, dla zachowania czytelności
