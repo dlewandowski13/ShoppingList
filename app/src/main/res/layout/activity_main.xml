@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@drawable/background_img"
-    tools:context=".MainActivity">
+    tools:context="com.s26462.shoppinglist.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"

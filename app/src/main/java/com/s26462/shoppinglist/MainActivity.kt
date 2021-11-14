@@ -1,4 +1,4 @@
-package com.s24642.shoppinglist
+package com.s26462.shoppinglist
 
 import android.app.Dialog
 import android.content.Intent
@@ -9,7 +9,8 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.s24642.shoppinglist.Constants.PREFERENCE_NAME
+import com.s24642.shoppinglist.R
+import com.s26462.shoppinglist.Constants.PREFERENCE_NAME
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_shopping_list.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         btnShoppingList.setOnClickListener {
             Toast.makeText(this,"Wybrałeś listę zakupów",Toast.LENGTH_LONG).show()
-            val intentShoppngList = Intent(this,ShoppingList::class.java)
+            val intentShoppngList = Intent(this, ShoppingList::class.java)
             startActivity(intentShoppngList)
         }
 

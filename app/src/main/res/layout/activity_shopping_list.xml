@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ShoppingList"
+    tools:context="com.s26462.shoppinglist.ShoppingList"
     android:background="@drawable/background_img">
 
     <androidx.appcompat.widget.Toolbar

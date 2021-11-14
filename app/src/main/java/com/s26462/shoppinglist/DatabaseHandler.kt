@@ -1,4 +1,4 @@
-package com.s24642.shoppinglist
+package com.s26462.shoppinglist
 
 import android.content.ContentValues
 import android.content.Context

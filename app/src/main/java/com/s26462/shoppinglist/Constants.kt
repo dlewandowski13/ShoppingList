@@ -1,4 +1,4 @@
-package com.s24642.shoppinglist
+package com.s26462.shoppinglist
 
 object Constants {
     const val PREFERENCE_NAME = "Settings"

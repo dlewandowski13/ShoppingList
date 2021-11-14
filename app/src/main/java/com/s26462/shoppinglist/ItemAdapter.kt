@@ -1,4 +1,4 @@
-package com.s24642.shoppinglist
+package com.s26462.shoppinglist
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.s24642.shoppinglist.R
 import kotlinx.android.synthetic.main.items_row.view.*
 
 class ItemAdapter(val context: Context, val items: ArrayList<ShpngListModelClass>) :

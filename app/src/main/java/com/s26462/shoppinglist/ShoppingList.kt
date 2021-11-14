@@ -1,4 +1,4 @@
-package com.s24642.shoppinglist
+package com.s26462.shoppinglist
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.s24642.shoppinglist.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_shopping_list.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -174,8 +175,10 @@ class ShoppingList : AppCompatActivity() {
 
         val databaseHandler = DatabaseHandler(this)
 
-        val status = databaseHandler.updateItem(ShpngListModelClass(
-            shpngListModelClass.id, shpngListModelClass.name, shpngListModelClass.amount, shpngListModelClass.price, bougth))
+        val status = databaseHandler.updateItem(
+            ShpngListModelClass(
+            shpngListModelClass.id, shpngListModelClass.name, shpngListModelClass.amount, shpngListModelClass.price, bougth)
+        )
             if (status > -1) {
                 if(bougth == 1) {
                     Toast.makeText(applicationContext,"Kupiłeś ${shpngListModelClass.name}",Toast.LENGTH_LONG).show()
