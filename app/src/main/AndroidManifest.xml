@@ -14,7 +14,11 @@
         android:theme="@style/Theme.ShoppingList" >
         <activity
             android:name="com.s26462.shoppinglist.ShoppingList"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.s26462.shoppinglist.SL"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.s26462.shoppinglist.MainActivity"
             android:exported="true" >

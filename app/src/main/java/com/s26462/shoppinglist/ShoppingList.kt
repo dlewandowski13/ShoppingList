@@ -83,18 +83,13 @@ class ShoppingList : AppCompatActivity() {
                 etPrice.text.clear()
 
                 setupListofDataIntoRecyclerView()
-                Toast.makeText(applicationContext, "Before sendBroadcast", Toast.LENGTH_SHORT).show()
 
 //utworzenie intentu rozgłoszeniowego i przekazanie treści do wyświetlenia notyfikacji
                 val broadcastIntent = Intent("PRODUCT_ADDED")
                     .addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
                     .putExtra("message","Do Twojej listy zakupów dano nowy produkt: $name w ilości $amount w cenie $price")
 
-                val message = broadcastIntent.getStringExtra("message")
-                Toast.makeText(applicationContext, "Dodanie extra $message", Toast.LENGTH_SHORT).show()
                 sendBroadcast(broadcastIntent)
-//                sendOrderedBroadcast(broadcastIntent,"MY_PERMISSION")
-                Toast.makeText(applicationContext, "After sendBroadcast", Toast.LENGTH_SHORT).show()
             }
         } else {
             Toast.makeText(applicationContext,"Musisz uzupełnić wszystkie pola", Toast.LENGTH_LONG).show()
