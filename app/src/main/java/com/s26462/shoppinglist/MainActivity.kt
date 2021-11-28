@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.s24642.shoppinglist.R
+import com.s26462.shoppinglist.R
 import com.s26462.shoppinglist.Constants.PREFERENCE_NAME
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_shopping_list.*
@@ -96,8 +96,8 @@ class MainActivity : AppCompatActivity() {
     //funkcja służąca do wczytania ustawień z SharedPreferences
     fun initializeSettings(mSharedPreferences: SharedPreferences){
 //
-        val ShoppingListName = mSharedPreferences.getString(Constants.PREFERENCE_SL_NAME, "Twoja Lista zakupów")
-        val ShoppingListBackground = mSharedPreferences.getString(Constants.PREFERENCE_BACKGROUND,"dark")
+        val ShoppingListName = mSharedPreferences.getString(Constants.PREFERENCE_SL_NAME, Constants.DEF_SHOPPINGLIST_NAME)
+        val ShoppingListBackground = mSharedPreferences.getString(Constants.PREFERENCE_BACKGROUND,Constants.DEF_SHOPPINGLIST_BACKGROUND)
 
         btnShoppingList.text = ShoppingListName
 

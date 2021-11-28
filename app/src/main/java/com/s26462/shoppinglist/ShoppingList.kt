@@ -2,6 +2,7 @@ package com.s26462.shoppinglist
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +10,8 @@ import android.view.View
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.s24642.shoppinglist.R
+//import com.s26462.shoppinglist.Manifest
+import com.s26462.shoppinglist.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_shopping_list.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -33,7 +35,7 @@ class ShoppingList : AppCompatActivity() {
         setupListofDataIntoRecyclerView()
     }
 
-//funkcja przekazanie danych do widoku
+    //funkcja przekazanie danych do widoku
     private fun setupListofDataIntoRecyclerView() {
 
         if (getItemsList().size > 0) {
@@ -54,7 +56,7 @@ class ShoppingList : AppCompatActivity() {
         }
     }
 
-//Funkcja pobierająca listę produktów z bazy danych
+    //Funkcja pobierająca listę produktów z bazy danych
     private fun getItemsList(): ArrayList<ShpngListModelClass> {
 //utworzenie instancji klasy DatabaseHandler
         val databaseHandler = DatabaseHandler(this)
@@ -65,7 +67,7 @@ class ShoppingList : AppCompatActivity() {
     }
 
 
-//metoda do zapisu produktów w bazie danych
+    //metoda do zapisu produktów w bazie danych
     private fun addItem() {
         val name = etName.text.toString()
         val amount = etAmount.text.toString()
@@ -75,20 +77,33 @@ class ShoppingList : AppCompatActivity() {
         if (!name.isEmpty() && !amount.isEmpty() && !price.isEmpty()) {
             val status = databaseHandler.addItem(ShpngListModelClass(0, name, amount, price, 0))
             if (status > -1) {
-                Toast.makeText(applicationContext, "Produkt dodany", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Produkt dodany", Toast.LENGTH_SHORT).show()
                 etName.text.clear()
                 etAmount.text.clear()
                 etPrice.text.clear()
 
                 setupListofDataIntoRecyclerView()
+                Toast.makeText(applicationContext, "Before sendBroadcast", Toast.LENGTH_SHORT).show()
+
+//utworzenie intentu rozgłoszeniowego i przekazanie treści do wyświetlenia notyfikacji
+                val broadcastIntent = Intent("PRODUCT_ADDED")
+                    .addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                    .putExtra("message","Do Twojej listy zakupów dano nowy produkt: $name w ilości $amount w cenie $price")
+
+                val message = broadcastIntent.getStringExtra("message")
+                Toast.makeText(applicationContext, "Dodanie extra $message", Toast.LENGTH_SHORT).show()
+                sendBroadcast(broadcastIntent)
+//                sendOrderedBroadcast(broadcastIntent,"MY_PERMISSION")
+                Toast.makeText(applicationContext, "After sendBroadcast", Toast.LENGTH_SHORT).show()
             }
         } else {
             Toast.makeText(applicationContext,"Musisz uzupełnić wszystkie pola", Toast.LENGTH_LONG).show()
         }
 
+
     }
 
-//okienko do aktualizacji danych
+    //okienko do aktualizacji danych
     fun updateRecordDialog(shpngListModelClass: ShpngListModelClass) {
         val updateDialog = Dialog(this, R.style.Theme_Dialog)
         updateDialog.setCancelable(false)
@@ -132,7 +147,7 @@ class ShoppingList : AppCompatActivity() {
         updateDialog.show()
     }
 
-//metoda wywołująca alert
+    //metoda wywołująca alert
     fun deleteRecordAlertDialog(shpngListModelClass: ShpngListModelClass) {
         val builder = AlertDialog.Builder(this)
 //nagłówek alerta
@@ -177,18 +192,18 @@ class ShoppingList : AppCompatActivity() {
 
         val status = databaseHandler.updateItem(
             ShpngListModelClass(
-            shpngListModelClass.id, shpngListModelClass.name, shpngListModelClass.amount, shpngListModelClass.price, bougth)
+                shpngListModelClass.id, shpngListModelClass.name, shpngListModelClass.amount, shpngListModelClass.price, bougth)
         )
-            if (status > -1) {
-                if(bougth == 1) {
-                    Toast.makeText(applicationContext,"Kupiłeś ${shpngListModelClass.name}",Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(applicationContext,"Nie kupiłeś ${shpngListModelClass.name}",Toast.LENGTH_LONG).show()
-                }
-
-                setupListofDataIntoRecyclerView()
+        if (status > -1) {
+            if(bougth == 1) {
+                Toast.makeText(applicationContext,"Kupiłeś ${shpngListModelClass.name}",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(applicationContext,"Nie kupiłeś ${shpngListModelClass.name}",Toast.LENGTH_LONG).show()
             }
+
+            setupListofDataIntoRecyclerView()
         }
+    }
     fun initializeSettings(mSharedPreferences: SharedPreferences){
 //
         val ShoppingListBackground = mSharedPreferences.getString(Constants.PREFERENCE_BACKGROUND,"dark")
@@ -204,4 +219,3 @@ class ShoppingList : AppCompatActivity() {
     }
 
 }
-

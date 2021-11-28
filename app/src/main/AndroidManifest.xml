@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.s24642.shoppinglist" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.s26462.shoppinglist" >
 
+    <permission android:name="MY_PERMISSION" />
+    <uses-permission android:name="com.example.myapp.FOREGROUND_SERVICE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +14,7 @@
         android:theme="@style/Theme.ShoppingList" >
         <activity
             android:name="com.s26462.shoppinglist.ShoppingList"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name="com.s26462.shoppinglist.MainActivity"
             android:exported="true" >
@@ -22,5 +25,6 @@
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>
